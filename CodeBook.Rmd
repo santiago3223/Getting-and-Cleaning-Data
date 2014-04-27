@@ -1,0 +1,28 @@
+CodeBook
+===
+
+The goal of the assignment was to create a clean and tidy data set from the data on the UCI HAR Dataset folder.
+
+First we need to locate in the folder with the data and load or install the package reshape2 that we will need in this assignment.
+
+Steps:
+1.- Merges the training and the test sets to create one data set.
+    We get the data from the files :
+      "test/subject_test.txt"
+      "test/X_test.txt"
+      "test/y_test.txt"
+    Then we will use cbind to bind the 3 of them, after that we will do the same with the files 
+      "train/subject_train.txt"
+      "train/X_train.txt"
+      "train/y_train.txt"
+    Once we have this 2 data ser we use rbind to bind their rows, after that we read the data from the file "features.txt", then we assing the second column of the features data as column names for our data set.
+
+2.- Extracts only the measurements on the mean and standard deviation for each measurement.
+	  We extract the names of the columns that have the words mean, Mean or Std() using the grep function and we assign this to a vector. Then we use the created vector to extract from the dataset only the columns we need.
+    
+3.- Uses descriptive activity names to name the activities in the data set.
+	  We get the data from activity_labels.txt and assign it to a variable.
+4.- Appropriately labels the data set with descriptive activity names. 
+    We use the merge function to merge the data obtained from activity_labels.txt an our data set using the colum V1 from activity labels and the column activity from our data set . After that the change the name of the column V2 for descriptiveActivityName. Then we order the data set putting the last column (we use ncol to select it) into the second position.
+5.- Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+	  We use the functions from the reshape2 package to merge the data set using the column s"activity", "descriptiveActivityName" and "subject", after that we use dcast on our dataset to molen our dataset and obtain a 180 x 89 clean and tidy dataset, then we use write.table to export the data in diferent formats.
