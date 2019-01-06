@@ -1,28 +1,121 @@
 CodeBook
 ===
 
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
 The goal of the assignment was to create a clean and tidy data set from the data on the UCI HAR Dataset folder.
 
-First we need to locate in the folder with the data and load or install the package reshape2 that we will need in this assignment.
+The variables used in this assignment are :
 
-Steps:
-1.- Merges the training and the test sets to create one data set.
-    We get the data from the files :
-      "test/subject_test.txt"
-      "test/X_test.txt"
-      "test/y_test.txt"
-    Then we will use cbind to bind the 3 of them, after that we will do the same with the files 
-      "train/subject_train.txt"
-      "train/X_train.txt"
-      "train/y_train.txt"
-    Once we have this 2 data ser we use rbind to bind their rows, after that we read the data from the file "features.txt", then we assing the second column of the features data as column names for our data set.
+Variable name       |
+--------------------|
+"activity"
+"descriptiveActivityName"
+"subject"
+"tBodyAcc-mean()-X"
+"tBodyAcc-mean()-Y"
+"tBodyAcc-mean()-Z"
+"tBodyAcc-std()-X"
+"tBodyAcc-std()-Y"
+"tBodyAcc-std()-Z"
+"tGravityAcc-mean()-X"
+"tGravityAcc-mean()-Y"
+"tGravityAcc-mean()-Z"
+"tGravityAcc-std()-X"
+"tGravityAcc-std()-Y"
+"tGravityAcc-std()-Z"
+"tBodyAccJerk-mean()-X"
+"tBodyAccJerk-mean()-Y"
+"tBodyAccJerk-mean()-Z"
+"tBodyAccJerk-std()-X"
+"tBodyAccJerk-std()-Y"
+"tBodyAccJerk-std()-Z"
+"tBodyGyro-mean()-X"
+"tBodyGyro-mean()-Y"
+"tBodyGyro-mean()-Z"
+"tBodyGyro-std()-X"
+"tBodyGyro-std()-Y"
+"tBodyGyro-std()-Z"
+"tBodyGyroJerk-mean()-X"
+"tBodyGyroJerk-mean()-Y"
+"tBodyGyroJerk-mean()-Z"
+"tBodyGyroJerk-std()-X"
+"tBodyGyroJerk-std()-Y"
+"tBodyGyroJerk-std()-Z"
+"tBodyAccMag-mean()"
+"tBodyAccMag-std()"
+"tGravityAccMag-mean()"
+"tGravityAccMag-std()"
+"tBodyAccJerkMag-mean()"
+"tBodyAccJerkMag-std()"
+"tBodyGyroMag-mean()"
+"tBodyGyroMag-std()"
+"tBodyGyroJerkMag-mean()"
+"tBodyGyroJerkMag-std()"
+"fBodyAcc-mean()-X"
+"fBodyAcc-mean()-Y"
+"fBodyAcc-mean()-Z"
+"fBodyAcc-std()-X"
+"fBodyAcc-std()-Y"
+"fBodyAcc-std()-Z"
+"fBodyAcc-meanFreq()-X"
+"fBodyAcc-meanFreq()-Y"
+"fBodyAcc-meanFreq()-Z"
+"fBodyAccJerk-mean()-X"
+"fBodyAccJerk-mean()-Y"
+"fBodyAccJerk-mean()-Z"
+"fBodyAccJerk-std()-X"
+"fBodyAccJerk-std()-Y"
+"fBodyAccJerk-std()-Z"
+"fBodyAccJerk-meanFreq()-X"
+"fBodyAccJerk-meanFreq()-Y"
+"fBodyAccJerk-meanFreq()-Z"
+"fBodyGyro-mean()-X"
+"fBodyGyro-mean()-Y"
+"fBodyGyro-mean()-Z"
+"fBodyGyro-std()-X"
+"fBodyGyro-std()-Y"
+"fBodyGyro-std()-Z"
+"fBodyGyro-meanFreq()-X"
+"fBodyGyro-meanFreq()-Y"
+"fBodyGyro-meanFreq()-Z"
+"fBodyAccMag-mean()"
+"fBodyAccMag-std()"
+"fBodyAccMag-meanFreq()"
+"fBodyBodyAccJerkMag-mean()"
+"fBodyBodyAccJerkMag-std()"
+"fBodyBodyAccJerkMag-meanFreq()"
+"fBodyBodyGyroMag-mean()"
+"fBodyBodyGyroMag-std()"
+"fBodyBodyGyroMag-meanFreq()"
+"fBodyBodyGyroJerkMag-mean()"
+"fBodyBodyGyroJerkMag-std()"
+"fBodyBodyGyroJerkMag-meanFreq()"
 
-2.- Extracts only the measurements on the mean and standard deviation for each measurement.
-	  We extract the names of the columns that have the words mean, Mean or Std() using the grep function and we assign this to a vector. Then we use the created vector to extract from the dataset only the columns we need.
-    
-3.- Uses descriptive activity names to name the activities in the data set.
-	  We get the data from activity_labels.txt and assign it to a variable.
-4.- Appropriately labels the data set with descriptive activity names. 
-    We use the merge function to merge the data obtained from activity_labels.txt an our data set using the colum V1 from activity labels and the column activity from our data set . After that the change the name of the column V2 for descriptiveActivityName. Then we order the data set putting the last column (we use ncol to select it) into the second position.
-5.- Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
-	  We use the functions from the reshape2 package to merge the data set using the column s"activity", "descriptiveActivityName" and "subject", after that we use dcast on our dataset to molen our dataset and obtain a 180 x 89 clean and tidy dataset, then we use write.table to export the data in diferent formats.
+Where the variable name is formed by 
+"VARIABLENAME"-"OPERATION PERFORMED"-"AXIS"
+Where the variable names are:
+tBodyAcc : acceleration of body
+tGravityAcc  : acceleration of gravity 
+tBodyAccJerk : body acceleration jerk 
+tBodyGyro : body gyroscope measurement 
+tBodyGyroJerk : body gyroscope jerk 
+tBodyAccMag :  magnitude of body acceleration
+tGravityAccMag :  magnitude of Gravity acceleration
+tBodyAccJerkMag :  magnitude of body acceleration jerk
+tBodyGyroMag :  magnitude of body gyroscope 
+tBodyGyroJerkMag :  magnitude of body acceleration jerk
+fBodyAcc : frecuency of body acceleration
+fBodyGyro : frecuency acceleration of gravity 
+fBodyAccMag : frecuency of magnitude of body acceleration
+fBodyBodyAccJerkMag : frecuency of magnitude of body acceleration jerk
+fBodyBodyGyroMag : frecuency of magnitude of body gyroscope 
+
+
+And the operations :
+Mean = mean
+MeanFreq = MeanFrequency
+Std = Standart deviation
+
+for example tBodyGyroJerk-mean()-X means:Mean jerk signal of body for X direction. 
+
