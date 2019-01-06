@@ -7,8 +7,8 @@ The goal of the assignment was to create a clean and tidy data set from the data
 
 The variables used in this assignment are :
 
-Variable name       |
---------------------|
+Variable name       
+--------------------
 "activity"
 "descriptiveActivityName"
 "subject"
