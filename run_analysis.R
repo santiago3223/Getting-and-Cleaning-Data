@@ -1,4 +1,4 @@
-## set the working directory and load libraries
+
 setwd("/UCI HAR Dataset")
 library(reshape2)
 
@@ -33,6 +33,4 @@ data <- data[, c(1, ncol(data), 2, 3:(ncol(data)-1))]
 ##Step 5
 melt <- melt(data, id=c("activity", "descriptiveActivityName", "subject"))
 tidyData <- dcast(melt, activity + descriptiveActivityName + subject ~ variable, mean)
-write.table(tidyData, "tidyData.txt", sep="\t")
-write.table(tidyData, "tidyDataOpenAsCsv.txt", sep=",")
-write.table(tidyData, "tidyDataOpenAs.csv", sep=",")
+write.table(tidyData, "tidyData.txt", sep="\t", row.name=FALSE)
